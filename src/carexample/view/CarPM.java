@@ -3,7 +3,6 @@ package carexample.view;
 import carexample.model.Car;
 import com.jgoodies.binding.PresentationModel;
 import com.jgoodies.binding.value.ConverterFactory;
-import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 import com.jgoodies.common.collect.ArrayListModel;
 
@@ -21,7 +20,7 @@ public class CarPM extends PresentationModel<Car> {
     private final ValueModel doorValueModel;
     private final ValueModel nameValueModel;
     private final ValueModel wheelValueModel;
-    private final ValueModel selectedTypeHolder;
+    private final ValueModel selectedTypeModel;
     private final ArrayListModel possibleTypeListModel;
 
 
@@ -30,7 +29,7 @@ public class CarPM extends PresentationModel<Car> {
         doorValueModel = ConverterFactory.createStringConverter(this.getModel(Car.DOORS_PROPERTY_NAME), NumberFormat.getNumberInstance());
         nameValueModel = this.getModel(Car.NAME_PROPERTY_NAME);
         wheelValueModel = ConverterFactory.createStringConverter(this.getModel(Car.WHEELS_PROPERTY_NAME), NumberFormat.getNumberInstance());
-        selectedTypeHolder = getModel(Car.TYPE_PROPERTY_NAME);
+        selectedTypeModel = getModel(Car.TYPE_PROPERTY_NAME);
         possibleTypeListModel = new ArrayListModel<Car.Type>(Arrays.asList(Car.Type.values()));
     }
 
@@ -50,8 +49,8 @@ public class CarPM extends PresentationModel<Car> {
         return wheelValueModel;
     }
 
-    public ValueModel getSelectedTypeHolder() {
-        return selectedTypeHolder;
+    public ValueModel getSelectedTypeModel() {
+        return selectedTypeModel;
     }
 
     public ArrayListModel getPossibleTypeListModel() {

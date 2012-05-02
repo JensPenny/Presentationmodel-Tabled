@@ -84,7 +84,6 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <carexample.model/>
             </properties>
           </component>
         </children>

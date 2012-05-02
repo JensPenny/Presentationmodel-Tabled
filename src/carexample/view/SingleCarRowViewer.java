@@ -1,10 +1,12 @@
 package carexample.view;
 
-import com.jgoodies.binding.adapter.ComboBoxAdapter;
+import com.jgoodies.binding.adapter.Bindings;
 import carexample.model.Car;
+import com.jgoodies.binding.list.SelectionInList;
 import view.ViewContract;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,13 +26,11 @@ public class SingleCarRowViewer implements ViewContract<Car> {
 
     public SingleCarRowViewer(Car model) {
         this.carPM = new CarPM(model);
+        setBindings();
     }
-    public void setDataOnce(){
-        txtName.setText(carPM.getNameValueModel().getValue().toString());
-        txtDeuren.setText(carPM.getDoorValueModel().getValue().toString());
-        txtWielen.setText(carPM.getWheelValueModel().getValue().toString());
-        ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)carPM.getPossibleTypeListModel(), carPM.getSelectedTypeHolder());
-        cmbTypes.setModel(adapter);
+
+    public void setDataOnce() {
+
     }
 
     private Car getCar() {
@@ -53,6 +53,9 @@ public class SingleCarRowViewer implements ViewContract<Car> {
 
     @Override
     public void setBindings() {
-
+        Bindings.bind(txtName,carPM.getNameValueModel() );
+        Bindings.bind(txtDeuren, carPM.getDoorValueModel());
+        Bindings.bind(txtWielen, carPM.getWheelValueModel());
+        Bindings.bind(cmbTypes, new SelectionInList<Object>((List) carPM.getPossibleTypeListModel(), carPM.getSelectedTypeModel()));
     }
 }

@@ -20,7 +20,6 @@ public class AbstractObjectRenderer<E> implements TableCellRenderer {
                                                    boolean hasFocus, final int row, final int column) {
         E model = (E) value;
         viewContract.setModel(model);
-        viewContract.setDataOnce();
         viewContract.getGui().getPreferredSize();
         return viewContract.getGui();
     }

@@ -51,7 +51,7 @@ public class SingleCarRowEdit implements ViewContract<Car> {
         Bindings.bind(txtName, presentationModel.getNameValueModel());
         Bindings.bind(txtWielen, presentationModel.getWheelValueModel());
         Bindings.bind(txtDeuren, presentationModel.getDoorValueModel());
-        Bindings.bind(cmbTypes, new SelectionInList<Object>((List) presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder()));
+        Bindings.bind(cmbTypes, new SelectionInList<Object>((List) presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeModel()));
     }
 
     public void setDataOnce(){

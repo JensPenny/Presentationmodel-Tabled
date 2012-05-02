@@ -22,7 +22,6 @@ public class CarTableCellEditor extends AbstractCellEditor implements TableCellE
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         model = (Car)value;
         SingleCarRowEdit view = new SingleCarRowEdit(new CarPM(model));
-        view.setBindings();
         return view.getGui();
     }
 
