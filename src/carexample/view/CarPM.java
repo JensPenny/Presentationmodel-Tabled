@@ -1,5 +1,6 @@
-package model;
+package carexample.view;
 
+import carexample.model.Car;
 import com.jgoodies.binding.PresentationModel;
 import com.jgoodies.binding.value.ConverterFactory;
 import com.jgoodies.binding.value.ValueHolder;
@@ -17,30 +18,24 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 public class CarPM extends PresentationModel<Car> {
-
     private final ValueModel doorValueModel;
     private final ValueModel nameValueModel;
     private final ValueModel wheelValueModel;
-    private final ValueHolder selectedTypeHolder;
+    private final ValueModel selectedTypeHolder;
     private final ArrayListModel possibleTypeListModel;
 
-    private final Car model;
 
     public CarPM(Car bean) {
         super(bean);
-
-        model = (Car)bean;
-
         doorValueModel = ConverterFactory.createStringConverter(this.getModel(Car.DOORS_PROPERTY_NAME), NumberFormat.getNumberInstance());
         nameValueModel = this.getModel(Car.NAME_PROPERTY_NAME);
         wheelValueModel = ConverterFactory.createStringConverter(this.getModel(Car.WHEELS_PROPERTY_NAME), NumberFormat.getNumberInstance());
-        selectedTypeHolder = new ValueHolder(this.getValue(Car.TYPE_PROPERTY_NAME).toString());
+        selectedTypeHolder = getModel(Car.TYPE_PROPERTY_NAME);
         possibleTypeListModel = new ArrayListModel<Car.Type>(Arrays.asList(Car.Type.values()));
     }
 
-    public Car getCar()
-    {
-        return model;
+    public Car getCar() {
+        return getBean();
     }
 
     public ValueModel getDoorValueModel() {
@@ -55,7 +50,7 @@ public class CarPM extends PresentationModel<Car> {
         return wheelValueModel;
     }
 
-    public ValueHolder getSelectedTypeHolder() {
+    public ValueModel getSelectedTypeHolder() {
         return selectedTypeHolder;
     }
 

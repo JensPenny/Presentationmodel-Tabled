@@ -1,8 +1,8 @@
-package view;
+package carexample.view;
 
 import com.jgoodies.binding.adapter.ComboBoxAdapter;
-import model.Car;
-import model.CarPM;
+import carexample.model.Car;
+import view.ViewContract;
 
 import javax.swing.*;
 

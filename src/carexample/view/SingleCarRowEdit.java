@@ -1,16 +1,14 @@
-package view;
+package carexample.view;
 
+import carexample.model.Car;
 import com.jgoodies.binding.adapter.Bindings;
-import com.jgoodies.binding.adapter.ComboBoxAdapter;
-import model.Car;
-import model.CarPM;
+import com.jgoodies.binding.list.SelectionInList;
+import view.ViewContract;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,15 +30,7 @@ public class SingleCarRowEdit implements ViewContract<Car> {
     public SingleCarRowEdit(CarPM model){
         this.presentationModel = model;
         setKeyMap();
-        //setBindings();
-        cmbTypes.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getActionCommand().equals("comboBoxEdited")) {
-                    getPresentationModel().getSelectedTypeHolder().setValue(cmbTypes.getSelectedItem());
-                }
-            }
-        });
+        setBindings();
     }
 
     /**
@@ -57,24 +47,14 @@ public class SingleCarRowEdit implements ViewContract<Car> {
         //Kan evt een actie worden gestuurd naar table indien op cmb een tab gedaan wordt
     }
 
-    public CarPM getPresentationModel(){
-        return this.presentationModel;
-    }
-
     public void setBindings(){
         Bindings.bind(txtName, presentationModel.getNameValueModel());
         Bindings.bind(txtWielen, presentationModel.getWheelValueModel());
         Bindings.bind(txtDeuren, presentationModel.getDoorValueModel());
-        ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder());
-        cmbTypes.setModel(adapter);
+        Bindings.bind(cmbTypes, new SelectionInList<Object>((List) presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder()));
     }
 
     public void setDataOnce(){
-        txtName.setText(presentationModel.getNameValueModel().getValue().toString());
-        txtDeuren.setText(presentationModel.getDoorValueModel().getValue().toString());
-        txtWielen.setText(presentationModel.getWheelValueModel().getValue().toString());
-        ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder());
-        cmbTypes.setModel(adapter);
     }
 
     @Override

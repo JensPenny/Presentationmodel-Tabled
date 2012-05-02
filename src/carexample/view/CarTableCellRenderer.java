@@ -1,11 +1,9 @@
-package view;
+package carexample.view;
 
-import model.Car;
-import model.CarPM;
+import carexample.model.Car;
+import view.AbstractObjectRenderer;
 
-import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.

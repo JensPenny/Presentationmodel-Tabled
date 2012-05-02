@@ -1,8 +1,10 @@
-import model.Car;
-import model.CarPM;
-import view.CarListView;
+package carexample;
+
+import carexample.model.Car;
+import carexample.view.CarListView;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +23,28 @@ public class Main {
         Car lastCar = new Car(8, Car.Type.OFFROAD, "Offroad", 8);
         Car editableCar = new Car();
 
-        List<Car> modelList = new ArrayList<Car>();
+        final List<Car> modelList = new ArrayList<Car>();
         modelList.add(c1);
         modelList.add(bike);
         modelList.add(tank);
         modelList.add(lastCar);
         modelList.add(editableCar);
-        CarListView view = new CarListView(modelList);
+        final CarListView view = new CarListView(modelList);
 
+        final Box vbox = Box.createVerticalBox();
+        vbox.add(view.getGui());
+        vbox.add(new JButton(new AbstractAction("Print the object data") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (Car model : view.getObjects() ){
+                            System.out.println(model.toString());
+                        }
+                    }
+                }));
+        
         JFrame frame = new JFrame("Test: Editable list");
         frame.setDefaultCloseOperation(2);
-        frame.add(view.getGui());
+        frame.add(vbox);
         frame.pack();
         frame.setVisible(true);
     }

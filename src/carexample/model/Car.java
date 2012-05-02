@@ -1,4 +1,4 @@
-package model;
+package carexample.model;
 
 import com.jgoodies.binding.beans.Model;
 
@@ -16,7 +16,7 @@ public class Car extends Model {
     public final static String NAME_PROPERTY_NAME = "name";
     public final static String WHEELS_PROPERTY_NAME = "wheels";
 
-    public enum Type {OFFROAD, CITYCAR, TANK};
+    public enum Type {OFFROAD, CITYCAR, TANK}
 
     private Long doors = 0L;     //Long, want anders moet ik mijn eigen converters schrijven of iets te lang hierop zoeken:(
     private String type;

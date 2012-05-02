@@ -1,7 +1,7 @@
-package view;
+package carexample.view;
 
-import model.Car;
-import model.CarPM;
+import carexample.model.Car;
+import view.ViewContract;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -15,14 +15,13 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class CarTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-    Car model;
-    ViewContract view;
+
+    private Car model;
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        Car cellModel = (Car)value;
-        model = cellModel;
-        view = new SingleCarRowEdit(new CarPM(model));
+        model = (Car)value;
+        SingleCarRowEdit view = new SingleCarRowEdit(new CarPM(model));
         view.setBindings();
         return view.getGui();
     }

@@ -1,7 +1,5 @@
 package view;
 
-import model.CarPM;
-
 import javax.swing.*;
 
 /**
