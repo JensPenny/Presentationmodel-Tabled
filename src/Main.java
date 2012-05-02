@@ -21,13 +21,12 @@ public class Main {
         Car lastCar = new Car(8, Car.Type.OFFROAD, "Offroad", 8);
         Car editableCar = new Car();
 
-        List<CarPM> modelList = new ArrayList<CarPM>();
-        modelList.add(new CarPM(c1));
-        modelList.add(new CarPM(bike));
-        modelList.add(new CarPM(tank));
-        modelList.add(new CarPM(lastCar));
-        modelList.add(new CarPM(editableCar));
-
+        List<Car> modelList = new ArrayList<Car>();
+        modelList.add(c1);
+        modelList.add(bike);
+        modelList.add(tank);
+        modelList.add(lastCar);
+        modelList.add(editableCar);
         CarListView view = new CarListView(modelList);
 
         JFrame frame = new JFrame("Test: Editable list");

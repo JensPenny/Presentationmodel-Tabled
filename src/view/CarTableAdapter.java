@@ -2,6 +2,7 @@ package view;
 
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.common.collect.ArrayListModel;
+import model.Car;
 import model.CarPM;
 
 import java.util.List;
@@ -15,14 +16,14 @@ import java.util.List;
  */
 public class CarTableAdapter extends AbstractTableAdapter {
 
-    private final ArrayListModel<CarPM> carList;
+    private final ArrayListModel<Car> carList;
 
-    public CarTableAdapter(ArrayListModel<CarPM> carModelList){
+    public CarTableAdapter(ArrayListModel<Car> carModelList){
         super(carModelList);
         this.carList = carModelList;
     }
 
-    public List<CarPM> getList(){
+    public List<Car> getList(){
         return carList;
     }
 
@@ -38,7 +39,7 @@ public class CarTableAdapter extends AbstractTableAdapter {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return (this.carList == null ) ? 0 : carList.get(rowIndex);
+        return (this.carList == null ) ? null : carList.get(rowIndex);
     }
 
     @Override

@@ -2,6 +2,7 @@ package view;
 
 import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.adapter.ComboBoxAdapter;
+import model.Car;
 import model.CarPM;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ import java.util.Set;
  * Time: 10:40
  * To change this template use File | Settings | File Templates.
  */
-public class SingleCarRowEdit implements ViewContract {
+public class SingleCarRowEdit implements ViewContract<Car> {
     private JTextField txtName;
     private JTextField txtWielen;
     private JTextField txtDeuren;
@@ -60,9 +61,6 @@ public class SingleCarRowEdit implements ViewContract {
         return this.presentationModel;
     }
 
-    public void setPresentationModel(CarPM model) {
-        this.presentationModel = model;
-    }
     public void setBindings(){
         Bindings.bind(txtName, presentationModel.getNameValueModel());
         Bindings.bind(txtWielen, presentationModel.getWheelValueModel());
@@ -77,6 +75,16 @@ public class SingleCarRowEdit implements ViewContract {
         txtWielen.setText(presentationModel.getWheelValueModel().getValue().toString());
         ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder());
         cmbTypes.setModel(adapter);
+    }
+
+    @Override
+    public Car getModel() {
+        return presentationModel.getBean();
+    }
+
+    @Override
+    public void setModel(final Car model) {
+        presentationModel.setBean(model);
     }
 
     public JComponent getGui() {

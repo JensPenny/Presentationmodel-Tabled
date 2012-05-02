@@ -14,21 +14,9 @@ import java.awt.*;
  * Time: 10:51
  * To change this template use File | Settings | File Templates.
  */
-public class CarTableCellRenderer implements TableCellRenderer {
-    private ViewContract tblComponent;
+public class CarTableCellRenderer extends AbstractObjectRenderer<Car> implements TableCellRenderer {
 
     public CarTableCellRenderer(){
-        Car car = new Car();
-        CarPM model = new CarPM(car);
-        tblComponent = new SingleCarRowViewer(model);
-    }
-
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        CarPM model = (CarPM)value;
-        tblComponent.setPresentationModel(model);
-        tblComponent.setDataOnce();
-        tblComponent.getGui().getPreferredSize();
-        return tblComponent.getGui();
+        super(new SingleCarRowViewer(new Car()));
     }
 }

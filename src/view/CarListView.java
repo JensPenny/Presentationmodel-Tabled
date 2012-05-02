@@ -1,6 +1,7 @@
 package view;
 
 import com.jgoodies.common.collect.ArrayListModel;
+import model.Car;
 import model.CarPM;
 
 import javax.swing.*;
@@ -29,8 +30,8 @@ public class CarListView {
 
     private final CarTableAdapter carAdapter;
 
-    public CarListView(List<CarPM> modelList){
-        ArrayListModel<CarPM> carPMListModel = new ArrayListModel<CarPM>(modelList);
+    public CarListView(List<Car> modelList){
+        ArrayListModel<Car> carPMListModel = new ArrayListModel<Car>(modelList);
         carAdapter = new CarTableAdapter(carPMListModel);
         tblCarList = new JTable();
         tblCarList.setModel(carAdapter);
@@ -46,8 +47,8 @@ public class CarListView {
         btnPrintData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (CarPM model : carAdapter.getList() ){
-                    System.out.println(model.getCar().toString());
+                for (Car model : carAdapter.getList() ){
+                    System.out.println(model.toString());
                 }
             }
         });

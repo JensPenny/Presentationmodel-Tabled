@@ -1,6 +1,7 @@
 package view;
 
 import com.jgoodies.binding.adapter.ComboBoxAdapter;
+import model.Car;
 import model.CarPM;
 
 import javax.swing.*;
@@ -12,25 +13,38 @@ import javax.swing.*;
  * Time: 13:45
  * To change this template use File | Settings | File Templates.
  */
-public class SingleCarRowViewer implements ViewContract{
+public class SingleCarRowViewer implements ViewContract<Car> {
     private JPanel mainPanel;
     private JLabel txtName;
     private JLabel txtWielen;
     private JLabel txtDeuren;
     private JComboBox cmbTypes;
 
-    private CarPM presentationModel;
+    private final CarPM carPM;
 
-    public SingleCarRowViewer(CarPM model)
-    {
-        this.presentationModel = model;
+    public SingleCarRowViewer(Car model) {
+        this.carPM = new CarPM(model);
     }
     public void setDataOnce(){
-        txtName.setText(presentationModel.getNameValueModel().getValue().toString());
-        txtDeuren.setText(presentationModel.getDoorValueModel().getValue().toString());
-        txtWielen.setText(presentationModel.getWheelValueModel().getValue().toString());
-        ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeHolder());
+        txtName.setText(carPM.getNameValueModel().getValue().toString());
+        txtDeuren.setText(carPM.getDoorValueModel().getValue().toString());
+        txtWielen.setText(carPM.getWheelValueModel().getValue().toString());
+        ComboBoxAdapter adapter = new ComboBoxAdapter((ListModel)carPM.getPossibleTypeListModel(), carPM.getSelectedTypeHolder());
         cmbTypes.setModel(adapter);
+    }
+
+    private Car getCar() {
+        return carPM.getCar();
+    }
+
+    @Override
+    public Car getModel() {
+        return carPM.getBean();
+    }
+
+    @Override
+    public void setModel(Car model) {
+        carPM.setBean(model);
     }
 
     public JComponent getGui() {
@@ -40,15 +54,5 @@ public class SingleCarRowViewer implements ViewContract{
     @Override
     public void setBindings() {
 
-    }
-
-    @Override
-    public CarPM getPresentationModel() {
-        return this.presentationModel;
-    }
-
-    @Override
-    public void setPresentationModel(CarPM model){
-        this.presentationModel = model;
     }
 }

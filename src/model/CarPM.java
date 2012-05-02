@@ -16,7 +16,7 @@ import java.util.Arrays;
  * Time: 9:33
  * To change this template use File | Settings | File Templates.
  */
-public class CarPM extends PresentationModel {
+public class CarPM extends PresentationModel<Car> {
 
     private final ValueModel doorValueModel;
     private final ValueModel nameValueModel;
@@ -26,7 +26,7 @@ public class CarPM extends PresentationModel {
 
     private final Car model;
 
-    public CarPM(Object bean) {
+    public CarPM(Car bean) {
         super(bean);
 
         model = (Car)bean;

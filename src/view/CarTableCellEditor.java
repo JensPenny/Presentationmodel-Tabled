@@ -1,5 +1,6 @@
 package view;
 
+import model.Car;
 import model.CarPM;
 
 import javax.swing.*;
@@ -14,14 +15,14 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class CarTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-    CarPM model;
+    Car model;
     ViewContract view;
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        CarPM cellModel = (CarPM)value;
+        Car cellModel = (Car)value;
         model = cellModel;
-        view = new SingleCarRowEdit(cellModel);
+        view = new SingleCarRowEdit(new CarPM(model));
         view.setBindings();
         return view.getGui();
     }
@@ -29,7 +30,7 @@ public class CarTableCellEditor extends AbstractCellEditor implements TableCellE
     @Override
     public Object getCellEditorValue() {
         //Waarschuwing: wordt niet aangeroepen als venster gesloten OF venster resized
-        System.out.printf("Commit hier model: " + model.getCar().toString());
+        System.out.printf("Commit hier model: " + model.toString());
         return null;
     }
 }
