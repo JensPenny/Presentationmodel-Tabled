@@ -29,7 +29,7 @@ public class CarTableCellEditor extends AbstractCellEditor implements TableCellE
     @Override
     public Object getCellEditorValue() {
         //Waarschuwing: wordt niet aangeroepen als venster gesloten OF venster resized
-        System.out.printf("Commit hier model: " + model.getCar().toString());
+        System.out.println("Commit hier model: " + model.getCar().toString());
         return null;
     }
 }
