@@ -1,10 +1,9 @@
 package carexample.view;
 
-import com.jgoodies.common.collect.ArrayListModel;
 import carexample.model.Car;
-import view.MyListView;
-import view.MyTableAdapter;
-import view.MyTableModelFactory;
+import view.EditableListView;
+import view.EditorViewContract;
+import view.EditorViewContractFactory;
 
 import java.util.List;
 
@@ -15,14 +14,13 @@ import java.util.List;
  * Time: 10:37
  * To change this template use File | Settings | File Templates.
  */
-public class CarListView extends MyListView<Car> {
+public class CarListView extends EditableListView<Car> {
 
     public CarListView(final List<Car> modelList) {
-        super(Car.class, new MyTableModelFactory<Car>() {
-            @Override
-            public MyTableAdapter<Car> createModel(final ArrayListModel<Car> objectList) {
-                return new CarTableAdapter(objectList);
+        super(Car.class, modelList, new SingleCarRowViewer(new Car()), new EditorViewContractFactory<Car>() {
+            public EditorViewContract<Car> create(Car car) {
+                return new SingleCarRowEdit(new CarPM(car));
             }
-        }, modelList, new CarTableCellRenderer(), new CarTableCellEditor());
+        });
     }
 }

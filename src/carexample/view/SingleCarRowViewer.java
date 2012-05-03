@@ -29,8 +29,6 @@ public class SingleCarRowViewer implements ViewContract<Car> {
         setBindings();
     }
 
-
-    @Override
     public void setModel(Car model) {
         carPM.setBean(model);
     }
@@ -39,7 +37,6 @@ public class SingleCarRowViewer implements ViewContract<Car> {
         return mainPanel;
     }
 
-    @Override
     public void setBindings() {
         Bindings.bind(txtName,carPM.getNameValueModel() );
         Bindings.bind(txtDeuren, carPM.getDoorValueModel());

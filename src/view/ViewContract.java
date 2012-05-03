@@ -13,7 +13,6 @@ import java.awt.*;
 public interface ViewContract<E> {
     public JComponent getGui();
 
-    public void setBindings();
 
     public void setModel(E model);
 

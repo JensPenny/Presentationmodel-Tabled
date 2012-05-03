@@ -34,7 +34,6 @@ public class Main {
         final Box vbox = Box.createVerticalBox();
         vbox.add(view.getGui());
         vbox.add(new JButton(new AbstractAction("Print the object data") {
-                    @Override
                     public void actionPerformed(ActionEvent e) {
                         for (Car model : view.getObjects() ){
                             System.out.println(model.toString());
