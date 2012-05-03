@@ -88,7 +88,7 @@ public class SingleCarRowEdit implements EditorViewContract<Car> {
     }
 
 
-    public boolean isLastComponent(Component aComponent) {
+    public boolean isLastComponentInView(Component aComponent) {
         return cmbTypes == aComponent;
     }
 

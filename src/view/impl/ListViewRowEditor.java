@@ -2,7 +2,6 @@ package view.impl;
 
 import view.EditorViewContract;
 import view.EditorViewContractFactory;
-import view.impl.MyJTable;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -97,6 +96,6 @@ class ListViewRowEditor<E> extends AbstractCellEditor implements TableCellEditor
     }
 
     public boolean isLastComponent(Component aComponent) {
-        return view.isLastComponent(aComponent);
+        return view.isLastComponentInView(aComponent);
     }
 }

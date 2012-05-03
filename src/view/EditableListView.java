@@ -2,7 +2,7 @@ package view;
 
 import view.impl.EditableListViewImpl;
 
-import java.awt.*;
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class EditableListView<E> {
     }
 
 
-    public Component getGui() {
+    public JComponent getGui() {
         return impl.getGui();
     }
 }

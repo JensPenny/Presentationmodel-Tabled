@@ -7,6 +7,8 @@ import java.awt.*;
 * Date: 3/05/12
 */
 public interface EditorViewContract<E> extends ViewContract<E> {
-    boolean isLastComponent(Component aComponent);
+
+    boolean isLastComponentInView(Component aComponent);
+
     void requestFocus();
 }
