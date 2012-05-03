@@ -33,9 +33,6 @@ public class CarPM extends PresentationModel<Car> {
         possibleTypeListModel = new ArrayListModel<Car.Type>(Arrays.asList(Car.Type.values()));
     }
 
-    public Car getCar() {
-        return getBean();
-    }
 
     public ValueModel getDoorValueModel() {
         return doorValueModel;

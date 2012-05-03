@@ -45,7 +45,8 @@ public class Main {
         JFrame frame = new JFrame("Test: Editable list");
         frame.setDefaultCloseOperation(2);
         frame.add(vbox);
-        frame.pack();
+        frame.setSize(1100,400);
         frame.setVisible(true);
+
     }
 }

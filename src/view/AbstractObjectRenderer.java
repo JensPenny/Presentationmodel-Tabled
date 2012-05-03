@@ -18,9 +18,8 @@ public class AbstractObjectRenderer<E> implements TableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                    boolean hasFocus, final int row, final int column) {
-        E model = (E) value;
-        viewContract.setModel(model);
-        viewContract.getGui().getPreferredSize();
+        final E model = (E) value;
+        viewContract.setModel(model);        
         return viewContract.getGui();
     }
 }

@@ -29,18 +29,6 @@ public class SingleCarRowViewer implements ViewContract<Car> {
         setBindings();
     }
 
-    public void setDataOnce() {
-
-    }
-
-    private Car getCar() {
-        return carPM.getCar();
-    }
-
-    @Override
-    public Car getModel() {
-        return carPM.getBean();
-    }
 
     @Override
     public void setModel(Car model) {

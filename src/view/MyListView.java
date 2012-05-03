@@ -1,10 +1,8 @@
 package view;
 
-import carexample.view.CarTableCellEditor;
 import com.jgoodies.common.collect.ArrayListModel;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import java.awt.*;
@@ -24,11 +22,12 @@ public class MyListView<E> {
 
     public MyListView(final Class<E> clazz, final MyTableModelFactory<E> factory, final List<E> modelList,
                       final TableCellRenderer cellRenderer,
-                      final TableCellEditor cellEditor) {
+                      final MyEditor<E> cellEditor) {
 
         listModel = new ArrayListModel<E>(modelList);
-        TableModel model  = factory.createModel(listModel);
-        JTable table = new JTable();
+        TableModel model = factory.createModel(listModel);
+        final MyJTable table = new MyJTable();
+        table.getTableHeader().setVisible(false);
         table.setModel(model);
         table.setDefaultRenderer(clazz, cellRenderer);
         table.setDefaultEditor(clazz, cellEditor);
@@ -37,14 +36,17 @@ public class MyListView<E> {
         table.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.<AWTKeyStroke>emptySet());
         table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "none");
         table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "none");
-        gui = new JScrollPane(table);
+        gui = new JPanel(new BorderLayout());
+        gui.setFocusCycleRoot(true);
+        gui.add(new JScrollPane(table));
     }
 
-    public List<E> getObjects(){
+
+    public List<E> getObjects() {
         return new ArrayList<E>(listModel);
     }
-    
-    public JComponent getGui(){
+
+    public JComponent getGui() {
         return gui;
     }
 }

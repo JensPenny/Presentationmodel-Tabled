@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,10 +10,11 @@ import javax.swing.*;
  * Time: 13:48
  * To change this template use File | Settings | File Templates.
  */
-public interface ViewContract <E> {
+public interface ViewContract<E> {
     public JComponent getGui();
+
     public void setBindings();
-    public void setDataOnce();
-    public E getModel();
+
     public void setModel(E model);
+
 }

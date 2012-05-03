@@ -1,11 +1,8 @@
 package carexample.view;
 
 import carexample.model.Car;
-import view.ViewContract;
-
-import javax.swing.*;
-import javax.swing.table.TableCellEditor;
-import java.awt.*;
+import view.EditorViewContract;
+import view.MyEditor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,21 +11,11 @@ import java.awt.*;
  * Time: 11:58
  * To change this template use File | Settings | File Templates.
  */
-public class CarTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-
-    private Car model;
+public class CarTableCellEditor extends MyEditor<Car> {
 
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        model = (Car)value;
-        SingleCarRowEdit view = new SingleCarRowEdit(new CarPM(model));
-        return view.getGui();
+    protected EditorViewContract<Car> prepareEditor(Car car) {
+        return new SingleCarRowEdit(new CarPM(getModel()));
     }
 
-    @Override
-    public Object getCellEditorValue() {
-        //Waarschuwing: wordt niet aangeroepen als venster gesloten OF venster resized
-        System.out.printf("Commit hier model: " + model.toString());
-        return null;
-    }
 }

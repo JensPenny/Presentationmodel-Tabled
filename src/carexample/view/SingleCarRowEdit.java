@@ -3,10 +3,14 @@ package carexample.view;
 import carexample.model.Car;
 import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.list.SelectionInList;
-import view.ViewContract;
+import view.EditorViewContract;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +22,7 @@ import java.util.Set;
  * Time: 10:40
  * To change this template use File | Settings | File Templates.
  */
-public class SingleCarRowEdit implements ViewContract<Car> {
+public class SingleCarRowEdit implements EditorViewContract<Car> {
     private JTextField txtName;
     private JTextField txtWielen;
     private JTextField txtDeuren;
@@ -44,6 +48,25 @@ public class SingleCarRowEdit implements ViewContract<Car> {
         txtName.setFocusTraversalKeys(JComponent.WHEN_FOCUSED, strokes);
         txtDeuren.setFocusTraversalKeys(JComponent.WHEN_FOCUSED, strokes);
         txtWielen.setFocusTraversalKeys(JComponent.WHEN_FOCUSED, strokes);
+        cmbTypes.setFocusTraversalKeys(JComponent.WHEN_FOCUSED, strokes);
+        cmbTypes.addFocusListener(new FocusAdapter() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);    //To change body of overridden methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                System.out.println("e.getOppositeComponent() = " + e.getOppositeComponent());
+            }
+        });
+        cmbTypes.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                System.out.println("evt.getPropertyName() = " + evt.getPropertyName());
+            }
+        });
         //Kan evt een actie worden gestuurd naar table indien op cmb een tab gedaan wordt
     }
 
@@ -54,13 +77,6 @@ public class SingleCarRowEdit implements ViewContract<Car> {
         Bindings.bind(cmbTypes, new SelectionInList<Object>((List) presentationModel.getPossibleTypeListModel(), presentationModel.getSelectedTypeModel()));
     }
 
-    public void setDataOnce(){
-    }
-
-    @Override
-    public Car getModel() {
-        return presentationModel.getBean();
-    }
 
     @Override
     public void setModel(final Car model) {
@@ -69,5 +85,14 @@ public class SingleCarRowEdit implements ViewContract<Car> {
 
     public JComponent getGui() {
         return mainPanel;
+    }
+
+
+    public boolean isLastComponent(Component aComponent) {
+        return cmbTypes == aComponent;
+    }
+
+    public void requestFocus() {
+        txtName.requestFocus();
     }
 }
