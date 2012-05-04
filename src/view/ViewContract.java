@@ -1,8 +1,7 @@
 package view;
 
-import model.CarPM;
-
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +10,9 @@ import javax.swing.*;
  * Time: 13:48
  * To change this template use File | Settings | File Templates.
  */
-public interface ViewContract {
+public interface ViewContract<E> {
     public JComponent getGui();
-    public void setBindings();
-    public void setDataOnce();
-    public CarPM getPresentationModel();
-    public void setPresentationModel(CarPM model);
+
+    public void setModel(E model);
+
 }

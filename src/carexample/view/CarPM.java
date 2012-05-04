@@ -1,8 +1,8 @@
-package model;
+package carexample.view;
 
+import carexample.model.Car;
 import com.jgoodies.binding.PresentationModel;
 import com.jgoodies.binding.value.ConverterFactory;
-import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 import com.jgoodies.common.collect.ArrayListModel;
 
@@ -16,32 +16,23 @@ import java.util.Arrays;
  * Time: 9:33
  * To change this template use File | Settings | File Templates.
  */
-public class CarPM extends PresentationModel {
-
+public class CarPM extends PresentationModel<Car> {
     private final ValueModel doorValueModel;
     private final ValueModel nameValueModel;
     private final ValueModel wheelValueModel;
-    private final ValueHolder selectedTypeHolder;
+    private final ValueModel selectedTypeModel;
     private final ArrayListModel possibleTypeListModel;
 
-    private final Car model;
 
-    public CarPM(Object bean) {
+    public CarPM(Car bean) {
         super(bean);
-
-        model = (Car)bean;
-
         doorValueModel = ConverterFactory.createStringConverter(this.getModel(Car.DOORS_PROPERTY_NAME), NumberFormat.getNumberInstance());
         nameValueModel = this.getModel(Car.NAME_PROPERTY_NAME);
         wheelValueModel = ConverterFactory.createStringConverter(this.getModel(Car.WHEELS_PROPERTY_NAME), NumberFormat.getNumberInstance());
-        selectedTypeHolder = new ValueHolder(this.getValue(Car.TYPE_PROPERTY_NAME).toString());
+        selectedTypeModel = getModel(Car.TYPE_PROPERTY_NAME);
         possibleTypeListModel = new ArrayListModel<Car.Type>(Arrays.asList(Car.Type.values()));
     }
 
-    public Car getCar()
-    {
-        return model;
-    }
 
     public ValueModel getDoorValueModel() {
         return doorValueModel;
@@ -55,8 +46,8 @@ public class CarPM extends PresentationModel {
         return wheelValueModel;
     }
 
-    public ValueHolder getSelectedTypeHolder() {
-        return selectedTypeHolder;
+    public ValueModel getSelectedTypeModel() {
+        return selectedTypeModel;
     }
 
     public ArrayListModel getPossibleTypeListModel() {
