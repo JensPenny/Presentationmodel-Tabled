@@ -54,7 +54,9 @@ class ListViewRowEditor<E> extends AbstractCellEditor implements TableCellEditor
                         stopCellEditing();
                         Container ancestor = getMyjt().getFocusCycleRootAncestor();
                         Component cmp = ancestor.getFocusTraversalPolicy().getComponentAfter(ancestor, getMyjt());
-                        cmp.transferFocus();
+                        System.out.println(ancestor.getFocusTraversalPolicy().getFirstComponent(ancestor.getParent()).toString());
+                        System.out.println(ancestor.getFocusTraversalPolicy().getLastComponent(ancestor.getParent()).toString());
+                        ancestor.getParent().transferFocus();
                     }
                 } else {
                     super.focusNextComponent(aComponent);

@@ -4,6 +4,7 @@ import carexample.model.Car;
 import carexample.view.CarListView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,16 @@ public class Main {
 
         final Box vbox = Box.createVerticalBox();
         vbox.add(view.getGui());
-        vbox.add(new JButton(new AbstractAction("Print the object data") {
-                    public void actionPerformed(ActionEvent e) {
-                        for (Car model : view.getObjects() ){
-                            System.out.println(model.toString());
-                        }
-                    }
-                }));
+        JButton btnprintData =   new JButton(new AbstractAction("Print the object data") {
+            public void actionPerformed(ActionEvent e) {
+                for (Car model : view.getObjects() ){
+                    System.out.println(model.toString());
+                }
+            }
+        });
+        vbox.add(btnprintData);
+
+        vbox.setFocusTraversalPolicy(new DefaultFocusTraversalPolicy());
         
         JFrame frame = new JFrame("Test: Editable list");
         frame.setDefaultCloseOperation(2);
